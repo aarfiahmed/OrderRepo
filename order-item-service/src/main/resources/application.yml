@@ -1,0 +1,39 @@
+
+spring:
+  application:
+   name: OrderItemServiceV1
+  datasource:
+   url: jdbc:h2:mem:testdb
+   driverClassName: org.h2.Driver
+   username: sa
+   password: password
+
+
+
+
+server:
+  port: ${PORT:9090} 
+ 
+     
+     
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: http://user:password@localhost:8761/eureka/
+      
+      
+info:
+  app:
+    name:  OrderItemServiceV1
+    
+    
+logging:
+  level:
+    com.app.orderitemservice: INFO
+  path:
+    log
+  file:
+     ${logging.path}/orderItemService.log
