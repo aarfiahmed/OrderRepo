@@ -32,7 +32,7 @@ private OrderItemRepository orderItemRepository;
 	public Order getOrderDetails(String orderId) {
 		List<OrderItem> orderItems=null;
 		OrderEntity orders= orderRepository.findById(orderId).orElseThrow(()->new ApplicationServiceException("Order Not Found"));
-		Order orderDetails = getOrderDetails(orders);
+		Order orderDetails = createOrderDetails(orders);
 		try {
 			 orderItems = orderItemRepository.getOrderItem(orderId);
 			logger.info("got the response from order item service {}",orderItems);
@@ -77,7 +77,7 @@ private OrderItemRepository orderItemRepository;
 		return entity;
 	}
 	
-	private Order getOrderDetails(OrderEntity entity) {
+	private Order createOrderDetails(OrderEntity entity) {
 		Order order= new Order();
 		order.setCustomerName(entity.getCustomerName());
 		order.setOrderDate(entity.getOrderDate());

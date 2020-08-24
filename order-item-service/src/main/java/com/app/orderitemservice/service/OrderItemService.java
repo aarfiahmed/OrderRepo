@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.orderitemservice.domainmodel.OrderItem;
-import com.app.orderitemservice.domainmodel.OrderItemEntity;
+import com.app.orderitemservice.entity.OrderItemEntity;
 import com.app.orderitemservice.exception.ApplicationServiceException;
 import com.app.orderitemservice.repository.OrderItemRepository;
 
@@ -40,11 +40,11 @@ if(orderItems==null || orderItems.isEmpty()) {
 
 
 	public void createOrderItem(OrderItem orderItem) {
-		orderItemRepository.save(getOrderItemEntity(orderItem));
+		orderItemRepository.save(createOrderItemEntity(orderItem));
 		orderItemRepository.flush();
 	}
 	
-	private OrderItemEntity getOrderItemEntity(OrderItem orderItem) {
+	private OrderItemEntity createOrderItemEntity(OrderItem orderItem) {
 		OrderItemEntity entity= new OrderItemEntity();
 		entity.setProductCode(orderItem.getProductCode());
 		entity.setProductName(orderItem.getProductName());

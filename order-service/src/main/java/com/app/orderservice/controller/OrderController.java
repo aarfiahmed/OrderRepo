@@ -46,7 +46,7 @@ public class OrderController {
 	@PostMapping("orders")
 	public ResponseEntity<String> createOrder(@RequestBody Order order){
 		logger.info("creating order {}",order);
-//		requestValidator.validate(order);
+		requestValidator.validate(order);
 		String orderId = orderService.createOrderDetails(order);
 		return new ResponseEntity<String>(orderId,HttpStatus.CREATED);
 	}
